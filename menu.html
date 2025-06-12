@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu - Ishpreet's Restaurant</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: sans-serif;
+    }
+
+    body {
+      background-color: #fffaf0;
+      color: #333;
+    }
+
+    header {
+      text-align: center;
+      padding: 20px;
+      background-color: #d32f2f;
+      color: white;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      background-color: #b71c1c;
+      padding: 10px 0;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 20px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .menu-section {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .menu-section h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #d32f2f;
+    }
+
+    .dish-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .dish {
+      background-color: #fff0e0;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .dish img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+
+    .dish h3 {
+      margin: 10px 0 5px;
+    }
+
+    .dish p {
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Our Menu</h1>
+  </header>
+  
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="menu.html">Menu</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <section class="menu-section">
+    <h2>Dishes We Serve</h2>
+    <div class="dish-grid">
+
+      <div class="dish">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmgYVi2uIJU5_WaCy45wfkrGxpUkFZ65osjA&s" alt="Butter Chicken">
+        <h3>Butter Chicken - $15</h3>
+        <p>Rich, creamy tomato-based curry with tender chicken.</p>
+      </div>
+
+      <div class="dish">
+        <img src="https://rachnacooks.com/wp-content/uploads/2019/07/palak-paneer-2-1.jpg" alt="Palak Paneer">
+        <h3>Palak Paneer - $11.99</h3>
+        <p>Spinach curry with homemade cottage cheese cubes.</p>
+      </div>
+
+      <div class="dish">
+        <img src="https://madhurasrecipe.com/wp-content/uploads/2023/05/Chole-Bhature-Featured.jpg" alt="Chole Bhature">
+        <h3>Chole Bhature - $25</h3>
+        <p>Spiced chickpeas served with deep-fried bread.</p>
+      </div>
+
+      <div class="dish">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTVAVgfd51EUIW2QNek9p9N9h6B4BCG1DZGQ&s" alt="Lamb Rogan Josh">
+        <h3>Lamb Rogan Josh - $30 (Family) / $12 (Single)</h3>
+        <p>Aromatic lamb curry with Kashmiri spices.</p>
+      </div>
+
+      <div class="dish">
+        <img src="https://www.cookwithmanali.com/wp-content/uploads/2015/07/Restaurant-Style-Recipe-Paneer-Tikka-500x500.jpg" alt="Paneer Tikka">
+        <h3>Paneer Tikka - $8.99 (3 pcs)</h3>
+        <p>Grilled cottage cheese cubes marinated in yogurt and spices.</p>
+      </div>
+
+      <div class="dish">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3aJrkMZfZWaRkqQu36Y9TBzYlCrkKHvy7mw&s" alt="Gulab Jamun">
+        <h3>Gulab Jamun - $5.99 (4 pcs)</h3>
+        <p>Soft, syrup-soaked dessert balls for a sweet finish.</p>
+      </div>
+
+    </div>
+  </section>
+</body>
+</html>
