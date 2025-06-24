@@ -82,13 +82,33 @@
     .dish p {
       margin-bottom: 5px;
     }
+
+    button {
+      margin-top: 10px;
+      padding: 8px 12px;
+      background-color: #b71c1c;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #fff0e0;
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
   </style>
 </head>
 <body>
   <header>
     <h1>Our Menu</h1>
   </header>
-  
+
   <nav>
     <a href="index.html">Home</a>
     <a href="menu.html">Menu</a>
@@ -104,39 +124,58 @@
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmgYVi2uIJU5_WaCy45wfkrGxpUkFZ65osjA&s" alt="Butter Chicken">
         <h3>Butter Chicken - $15</h3>
         <p>Rich, creamy tomato-based curry with tender chicken.</p>
+        <button onclick="addToCart('Butter Chicken', 15)">Add to Cart</button>
       </div>
 
       <div class="dish">
         <img src="https://rachnacooks.com/wp-content/uploads/2019/07/palak-paneer-2-1.jpg" alt="Palak Paneer">
         <h3>Palak Paneer - $11.99</h3>
         <p>Spinach curry with homemade cottage cheese cubes.</p>
+        <button onclick="addToCart('Palak Paneer', 11.99)">Add to Cart</button>
       </div>
 
       <div class="dish">
         <img src="https://madhurasrecipe.com/wp-content/uploads/2023/05/Chole-Bhature-Featured.jpg" alt="Chole Bhature">
         <h3>Chole Bhature - $25</h3>
         <p>Spiced chickpeas served with deep-fried bread.</p>
+        <button onclick="addToCart('Chole Bhature', 25)">Add to Cart</button>
       </div>
 
       <div class="dish">
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTVAVgfd51EUIW2QNek9p9N9h6B4BCG1DZGQ&s" alt="Lamb Rogan Josh">
-        <h3>Lamb Rogan Josh - $30 (Family) / $12 (Single)</h3>
+        <h3>Lamb Rogan Josh - $12</h3>
         <p>Aromatic lamb curry with Kashmiri spices.</p>
+        <button onclick="addToCart('Lamb Rogan Josh', 12)">Add to Cart</button>
       </div>
 
       <div class="dish">
         <img src="https://www.cookwithmanali.com/wp-content/uploads/2015/07/Restaurant-Style-Recipe-Paneer-Tikka-500x500.jpg" alt="Paneer Tikka">
-        <h3>Paneer Tikka - $8.99 (3 pcs)</h3>
+        <h3>Paneer Tikka - $8.99</h3>
         <p>Grilled cottage cheese cubes marinated in yogurt and spices.</p>
+        <button onclick="addToCart('Paneer Tikka', 8.99)">Add to Cart</button>
       </div>
 
       <div class="dish">
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3aJrkMZfZWaRkqQu36Y9TBzYlCrkKHvy7mw&s" alt="Gulab Jamun">
-        <h3>Gulab Jamun - $5.99 (4 pcs)</h3>
+        <h3>Gulab Jamun - $5.99</h3>
         <p>Soft, syrup-soaked dessert balls for a sweet finish.</p>
+        <button onclick="addToCart('Gulab Jamun', 5.99)">Add to Cart</button>
       </div>
 
     </div>
   </section>
+
+  <section class="menu-section">
+    <h2>🛒 Your Cart</h2>
+    <div id="cart-items" class="dish-grid"></div>
+    <p><strong>Total: $<span id="total-price">0.00</span></strong></p>
+    <button onclick="clearCart()">Clear Cart</button>
+    <a href="checkout.html">
+  <button style="margin-top: 10px;">Go to Checkout</button>
+</a>
+
+  </section>
+
+  <script src="cart.js"></script>
 </body>
 </html>
