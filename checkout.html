@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Checkout - Ishpreet's Restaurant</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #fffaf0;
+      padding: 40px;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      color: #d32f2f;
+    }
+
+    .checkout-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      background-color: #fff0e0;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .totals {
+      margin-top: 30px;
+      font-size: 1.2rem;
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+  <h1>Checkout</h1>
+  <div id="checkout-list"></div>
+
+  <div class="totals">
+    <p>Total: $<span id="subtotal">0.00</span></p>
+    <p>Tax (5%): $<span id="tax">0.00</span></p>
+    <p><strong>Grand Total: $<span id="grandtotal">0.00</span></strong></p>
+  </div>
+
+  <script>
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  const list = document.getElementById('checkout-list');
+  const subtotalSpan = document.getElementById('subtotal');
+  const taxSpan = document.getElementById('tax');
+  const grandTotalSpan = document.getElementById('grandtotal');
+
+  let subtotal = 0;
+  cart.forEach(item => {
+    const div = document.createElement('div');
+    div.className = 'checkout-item';
+    div.innerHTML = `
+      <span>${item.name} (x${item.qty})</span>
+      <span>$${(item.price * item.qty).toFixed(2)}</span>
+    `;
+    list.appendChild(div);
+    subtotal += item.price * item.qty;
+  });
+
+  const tax = subtotal * 0.05;
+  const grandTotal = subtotal + tax;
+
+  subtotalSpan.innerText = subtotal.toFixed(2);
+  taxSpan.innerText = tax.toFixed(2);
+  grandTotalSpan.innerText = grandTotal.toFixed(2);
+</script>
