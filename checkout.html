@@ -20,15 +20,35 @@
     .checkout-item {
       display: flex;
       justify-content: space-between;
-      margin-bottom: 10px;
+      align-items: center;
       background-color: #fff0e0;
       padding: 10px;
       border-radius: 5px;
+      margin-bottom: 10px;
     }
 
     .totals {
       margin-top: 30px;
       font-size: 1.2rem;
+      text-align: right;
+    }
+
+    button {
+      padding: 8px 12px;
+      background-color: #d32f2f;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+
+    button:hover {
+      background-color: #b71c1c;
+    }
+
+    .controls {
+      margin-top: 20px;
       text-align: right;
     }
   </style>
@@ -43,29 +63,65 @@
     <p><strong>Grand Total: $<span id="grandtotal">0.00</span></strong></p>
   </div>
 
+  <div class="controls">
+    <button onclick="clearCart()">Clear Cart</button>
+  </div>
+
   <script>
-  const cart = JSON.parse(localStorage.getItem('cart')) || [];
-  const list = document.getElementById('checkout-list');
-  const subtotalSpan = document.getElementById('subtotal');
-  const taxSpan = document.getElementById('tax');
-  const grandTotalSpan = document.getElementById('grandtotal');
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const list = document.getElementById('checkout-list');
+    const subtotalSpan = document.getElementById('subtotal');
+    const taxSpan = document.getElementById('tax');
+    const grandTotalSpan = document.getElementById('grandtotal');
 
-  let subtotal = 0;
-  cart.forEach(item => {
-    const div = document.createElement('div');
-    div.className = 'checkout-item';
-    div.innerHTML = `
-      <span>${item.name} (x${item.qty})</span>
-      <span>$${(item.price * item.qty).toFixed(2)}</span>
-    `;
-    list.appendChild(div);
-    subtotal += item.price * item.qty;
-  });
+    function saveCartAndReload() {
+      localStorage.setItem('cart', JSON.stringify(cart));
+      location.reload();
+    }
 
-  const tax = subtotal * 0.05;
-  const grandTotal = subtotal + tax;
+    function removeItem(name) {
+      cart = cart.filter(item => item.name !== name);
+      saveCartAndReload();
+    }
 
-  subtotalSpan.innerText = subtotal.toFixed(2);
-  taxSpan.innerText = tax.toFixed(2);
-  grandTotalSpan.innerText = grandTotal.toFixed(2);
-</script>
+    function clearCart() {
+      cart = [];
+      saveCartAndReload();
+    }
+
+    function renderCart() {
+      let subtotal = 0;
+      list.innerHTML = '';
+
+      if (cart.length === 0) {
+        list.innerHTML = "<p>Your cart is empty.</p>";
+        subtotalSpan.innerText = "0.00";
+        taxSpan.innerText = "0.00";
+        grandTotalSpan.innerText = "0.00";
+        return;
+      }
+
+      cart.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'checkout-item';
+        div.innerHTML = `
+          <span>${item.name} (x${item.qty})</span>
+          <span>$${(item.price * item.qty).toFixed(2)}</span>
+          <button onclick="removeItem('${item.name}')">Remove</button>
+        `;
+        list.appendChild(div);
+        subtotal += item.price * item.qty;
+      });
+
+      const tax = subtotal * 0.05;
+      const grandTotal = subtotal + tax;
+
+      subtotalSpan.innerText = subtotal.toFixed(2);
+      taxSpan.innerText = tax.toFixed(2);
+      grandTotalSpan.innerText = grandTotal.toFixed(2);
+    }
+
+    renderCart();
+  </script>
+</body>
+</html>
